@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interaktiv Læringsplatform</title>
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=qtOh9vVa"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+    header {
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+    section {
+      margin: 2rem;
+      padding: 1rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    select, input, button {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Velkommen til din interaktive læringsplatform</h1>
+  <p>Vælg et fag og begynd at lære!</p>
+</header>
+
+<section>
+  <h2>Vælg et fag</h2>
+  <ul>
+    <li><a href="#dansk">Dansk</a></li>
+    <li><a href="#matematik">Matematik</a></li>
+    <li><a href="#engelsk">Engelsk</a></li>
+  </ul>
+</section>
+
+<section>
+  <h2>Vælg stemme</h2>
+  <select id="voiceSelect">
+    <option value="Danish Female">Dansk Kvinde</option>
+    <option value="UK English Male">Engelsk Mand</option>
+    <option value="UK English Female">Engelsk Kvinde</option>
+  </select>
+</section>
+
+<section id="dansk">
+  <h3>Dansk – Læsning og forståelse</h3>
+  <p>Læs følgende tekst og svar på spørgsmålet:</p>
+  <blockquote>
+    <p>"Der var engang en lille dreng, der elskede at læse bøger."</p>
+  </blockquote>
+  <label for="danskAnswer">Hvad elskede drengen at gøre?</label>
+  <input type="text" id="danskAnswer" placeholder="Skriv dit svar her">
+  <button onclick="giveFeedback('danskAnswer', 'læse bøger')">Afspil svar</button>
+</section>
+
+<section id="matematik">
+  <h3>Matematik – Addition og subtraktion</h3>
+  <p>Beregn resultatet af 15 + 7:</p>
+  <input type="number" id="matematikAnswer" placeholder="Skriv dit svar her">
+  <button onclick="giveFeedback('matematikAnswer', '22')">Afspil svar</button>
+</section>
+
+<section id="engelsk">
+  <h3>Engelsk – Simple present tense</h3>
+  <p>Translate the following sentence to English:</p>
+  <blockquote>
+    <p>"Jeg går til skolen hver dag."</p>
+  </blockquote>
+  <label for="engelskAnswer">Your answer:</label>
+  <input type="text" id="engelskAnswer" placeholder="Write your answer here">
+  <button onclick="giveFeedback('engelskAnswer', 'I go to school every day')">Afspil svar</button>
+</section>
+
+<script>
+  function giveFeedback(inputId, correctAnswer) {
+    var userAnswer = document.getElementById(inputId).value.trim();
+    var voice = document.getElementById('voiceSelect').value;
+
+    if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+      responsiveVoice.speak("Korrekt! Dit svar er rigtigt.", voice);
+    } else {
+      responsiveVoice.speak("Forkert. Prøv igen.", voice);
+    }
+  }
+</script>
+
+</body>
+</html>
